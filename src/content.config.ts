@@ -6,9 +6,10 @@ const postSchema = z.object({
   description: z.string(),
   pubDate: z.coerce.date(),
   updatedDate: z.coerce.date().optional(),
-  heroImage: z.string().optional(),
-  ogImage: z.string().optional(),
+  slug: z.string().optional(),
   tags: z.array(z.string()).optional(),
+  published: z.boolean().optional().default(false),
+  lang: z.string().optional()
 })
 
 const enPostsCollection = defineCollection({
@@ -18,7 +19,7 @@ const enPostsCollection = defineCollection({
 
 const dePostsCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/posts/de" }),
-  schema: postSchema,
+  schema: postSchema
 })
 
 export const collections = {

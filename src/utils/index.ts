@@ -1,10 +1,19 @@
 import { getCollection } from "astro:content"
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export const formatDate = (
   date: Date | string | undefined,
   format: string = "YYYY-MM-DD",
+  locale?:string
 ): string => {
   const validDate = date ? new Date(date) : new Date()
+
+  if(format === "locale") return validDate.toLocaleString(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  })
 
   const tokens: Record<string, string> = {
     YYYY: validDate.getFullYear().toString(),
@@ -23,7 +32,15 @@ export const getPostsByLocale = async (locale: string) => {
     locale === "en"
       ? await getCollection("enPosts")
       : await getCollection("dePosts")
+  // Add the locale to the data of each post
+  posts.forEach((post: any) => {
+    post.data.lang = locale;
+  });
   return posts.sort(
     (a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   )
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }

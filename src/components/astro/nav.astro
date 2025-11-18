@@ -7,61 +7,66 @@ const t = useTranslations(lang)
 
 const { home, archive, custom, links, about } =
   lang === "de" ? de.navigation : en.navigation
+
+  const linkClasses = `nav-links inline-block hover:underline hover:underline-offset-4 text-blue-700 dark:text-amber-400`
 ---
 
-<div
-  class="mt-4 mb-10 flex gap-4 overflow-x-auto text-lg whitespace-nowrap [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
->
-  {
-    home && (
-      <a
-        href={`/${lang}`}
-        class="hover:underline hover:underline-offset-4"
-        aria-label={t("nav.home")}
-        title={t("nav.home")}
-        data-astro-prefetch="viewport"
-      >
-        <p>{t("nav.home")}</p>
-      </a>
-    )
-  }
-  {
-    archive && (
-      <a
-        href={`/${lang}/archive`}
-        class="hover:underline hover:underline-offset-4"
-        aria-label={t("nav.archive")}
-        title={t("nav.archive")}
-        data-astro-prefetch="viewport"
-      >
-        <p>{t("nav.archive")}</p>
-      </a>
-    )
-  }
-  {
-    custom?.map((tab) => (
-      <a
-        href={tab.link}
-        class="hover:underline hover:underline-offset-4"
-        target="_blank"
-        aria-label={tab.label}
-        title={tab.label}
-        data-astro-prefetch="viewport"
-      >
-        <p>{tab.label}</p>
-      </a>
-    ))
-  }
+<nav>
+  <div class="flex flex-row flex-wrap gap-4 text-lg">
+    {
+      home && (
+        <a
+          href={`/${lang}`}
+          class={linkClasses}
+          aria-label={t("nav.home")}
+          title={t("nav.home")}
+          data-astro-prefetch="viewport"
+        >
+          {t("nav.home")}
+        </a>
+      )
+    }
+    {
+      archive && (
+        <a
+          href={`/${lang}/archive`}
+          class={linkClasses}
+          aria-label={t("nav.archive")}
+          title={t("nav.archive")}
+          data-astro-prefetch="viewport"
+        >
+          {t("nav.archive")}
+        </a>
+      )
+    }
+  </div>
+  <div class="flex flex-row flex-wrap gap-4 text-lg pt-1">
+    {
+      custom?.map((tab) => (
+        <a
+          href={tab.link}
+          class={linkClasses}
+          target="_blank"
+          aria-label={tab.label}
+          title={tab.label}
+          data-astro-prefetch="viewport"
+        >
+          {tab.label}
+        </a>
+      ))
+    }
+  </div>
+  
   {
     links && (
       <a
         href={`/${lang}/links`}
-        class="hover:underline hover:underline-offset-4"
+        class={linkClasses}
         aria-label={t("nav.links")}
         title={t("nav.links")}
         data-astro-prefetch="viewport"
       >
-        <p>{t("nav.links")}</p>
+        {t("nav.links")}
       </a>
     )
   }
@@ -69,13 +74,13 @@ const { home, archive, custom, links, about } =
     about && (
       <a
         href={`/${lang}/about`}
-        class="hover:underline hover:underline-offset-4"
+        class={linkClasses}
         aria-label={t("nav.about")}
         title={t("nav.about")}
         data-astro-prefetch="viewport"
       >
-        <p>{t("nav.about")}</p>
+        {t("nav.about")}
       </a>
     )
   }
-</div>
+</nav>

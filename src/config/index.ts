@@ -1,35 +1,43 @@
-import { Github, Twitter } from "lucide-react"
-
 export const defaultLanguage: string = "en"
 
 export const common = {
   domain: "https://lio.cat",
   meta: {
-    favicon: "/avatar.png",
+    favicon: "/images/general/avatar.png",
     url: "https://lio.cat",
   },
   googleAnalyticsId: "",
   social: [
-    {
-      icon: Twitter,
-      label: "X",
-      link: "https://lio.to/twitter",
-    },
-    {
-      icon: Github,
-      label: "GitHub",
-      link: "https://lio.to/github",
-    },
   ],
   rss: true,
   navigation: {
     home: true,
-    archive: true,
+    archive: false,
     custom: [
-      // {
-      //   label: "CamLife",
-      //   link: "https://camlife.cn",
-      // },
+      {
+        label: "bluesky",
+        link: "https://lio.to/bluesky",
+      },
+      {
+        label: "mastodon",
+        link: "https://lio.to/mastodon",
+      },
+      {
+        label: "twitter",
+        link: "https://lio.to/twitter",
+      },
+      {
+        label: "github",
+        link: "https://lio.to/github",
+      },
+      {
+        label: "forge",
+        link: "https://lio.to/git",
+      },
+      {
+        label: "email",
+        link: "mailto:wrath@lio.cat",
+      },
     ],
     links: false,
     about: false,
@@ -56,12 +64,6 @@ export const de = {
   },
   navigation: {
     ...common.navigation,
-    custom: [
-      // {
-      //   label: "影集",
-      //   link: "https://camlife.cn",
-      // },
-    ],
   },
   pageMeta: {
     archive: {
@@ -87,18 +89,13 @@ export const en = {
   siteName: "Lio",
   meta: {
     ...common.meta,
-    title: "Lio",
-    slogan: "fangmarks",
+    title: "fangmarks",
+    // slogan: "fangmarks",
     description: "digital sorcerer and pixel wizard",
   },
   navigation: {
     ...common.navigation,
-    custom: [
-      // {
-      //   label: "CamLife",
-      //   link: "https://camlife.cn",
-      // },
-    ],
+    
   },
   pageMeta: {
     archive: {

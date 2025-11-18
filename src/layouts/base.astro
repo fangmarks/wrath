@@ -6,16 +6,27 @@ import { en, de } from "~/config"
 import { ClientRouter } from "astro:transitions"
 
 import "~/styles/tailwind.css"
-import "~/styles/view-transition.css"
+// import "~/styles/view-transition.css"
 
 const lang = getLangFromUrl(Astro.url)
 
-const { title, description, ogImage } = Astro.props
+const post = Astro.props.post
 
-const ogImageURL = new URL(ogImage, Astro.site).href
+const urls = {
+  postURL: `${Astro.url.pathname}/og.png`,
+  general: `/images/general/ogImage.png`,
+}
+
+const isPost = Astro.url.pathname.includes("posts")
+
+const ogImageURL = new URL(isPost ? urls.postURL : urls.general, Astro.site).href
 const permalink = new URL(Astro.url.pathname, Astro.site).href
-
 const config = lang === "de" ? de : en
+const title = isPost
+          ? `${post.title} - ${config.meta.title}`
+          : `${config.meta.description} - ${config.meta.title}`
+const description = isPost ? post.description : config.meta.description
+
 ---
 
 <!doctype html>
@@ -25,30 +36,38 @@ const config = lang === "de" ? de : en
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href={config.meta.favicon} />
     <title>
-      {
-        title
-          ? `${config.meta.title} - ${title}`
-          : `${config.meta.title} - ${config.meta.slogan}`
-      }
+      {title}
     </title>
     <meta name="generator" content={Astro.generator} />
     <meta
       name="description"
-      content={description ? description : config.meta.description}
+      content={description}
     />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={permalink} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta
+      property="og:title"
+      content={title}
+    />
+    <meta
+      property="og:description"
+      content={description}
+    />
     <meta property="og:image" content={ogImageURL} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={permalink} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <meta
+      property="twitter:title"
+      content={title}
+    />
+    <meta
+      property="twitter:description"
+      content={description}
+    />
     <meta property="twitter:image" content={ogImageURL} />
 
     <script is:inline>
@@ -82,21 +101,25 @@ const config = lang === "de" ? de : en
 
     <script
       is:inline
-      src="https://umami.guoqi.dev/script.js"
-      data-website-id="759e9e56-20d3-463b-8d6e-abba5c53128b"
-      data-domains="astro-air.guoqi.dev"></script>
+      src="https://analytics.lio.systems/script.js"
+      data-website-id="774c3c4f-205a-4b11-b844-3e659035ee38"
+      data-domains="lio.cat"></script>
 
-    {
-      config.googleAnalyticsId && (
-        <GoogleAnalytics id={config.googleAnalyticsId} />
-      )
-    }
     <ClientRouter />
   </head>
   <body
-    class="flex min-h-screen w-full justify-center px-6 md:px-0 dark:bg-[#121212] dark:text-white"
+    class="flex min-h-screen w-full justify-center bg-amber-400 px-6 dark:bg-[#121212] dark:text-white"
   >
     <slot />
-    <NoiseBackground />
+    <!-- <NoiseBackground /> -->
   </body>
 </html>
+
+<style is:global>
+  .markdown-link {
+    color: #1447e6;
+  }
+  html.dark .markdown-link {
+    color: #ffb900;
+  }
+</style>

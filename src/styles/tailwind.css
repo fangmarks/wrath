@@ -1,3 +1,30 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 @plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+body {
+    font-family: 'JetBrains Mono Variable', monospace;
+  }
+
+.nav-links, .markdown-link {
+  text-decoration: none;
+  position: relative;
+  padding-right: 1em;
+}
+
+.markdown-link::after, .nav-links::after {
+    content: "↗";
+    position: absolute;
+    right: 0.1em;
+    top: 0;
+    font-size: 1em;
+    line-height: 1;
+    display: inline-block;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }

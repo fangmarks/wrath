@@ -8,26 +8,45 @@ import expressiveCode from "astro-expressive-code"
 import { defineConfig } from "astro/config"
 
 import robotsTxt from "astro-robots-txt"
+import addClasses from "rehype-class-names"
+// import remarkRehype from "remark-rehype"
+
+import og from "astro-og";
+
+import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
   output: "static",
   prefetch: true,
-  site: "https://astro-air.guoqi.dev",
+  site: import.meta.env.PROD ? "https://lio.cat" : 'http://localhost:4321',
+
+  markdown: {
+    remarkRehype: {},
+    rehypePlugins: [
+      [
+        addClasses, { a: 'markdown-link'}
+      ],
+    ],
+  },
+
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      allowedHosts: true,
+    },
+    
   },
-  integrations: [
-    react(),
-    sitemap(),
-    expressiveCode({
-      plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
-      themes: ["material-theme-lighter", "material-theme-darker"],
-      defaultProps: {
-        showLineNumbers: true,
-      },
-    }),
-    mdx(),
-    robotsTxt(),
-  ],
+
+  integrations: [react(), sitemap(), expressiveCode({
+    plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
+    themes: ["material-theme-lighter", "material-theme-darker"],
+    defaultProps: {
+      showLineNumbers: true,
+    },
+  }), mdx({}), robotsTxt(), og()],
+
+  adapter: node({
+    mode: "standalone",
+  }),
 })

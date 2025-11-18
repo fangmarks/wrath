@@ -6,18 +6,18 @@ interface Props {
   dateWidth?: string
 }
 
-const { post, lang, dateFormat = "default", dateWidth = "w-36" } = Astro.props
+const { post, lang, dateFormat = "locale", dateWidth = "w-36" } = Astro.props
 import { formatDate } from "~/utils"
 ---
 
 <a
   href={`/${lang}/posts/${post.id}/`}
-  class="my-3 flex visited:text-purple-500/90 md:my-2"
+  class="my-3 flex flex-col visited:text-purple-500/90 md:my-2 md:flex-row"
 >
   <p
-    class={`flex ${dateWidth} flex-shrink-0 truncate text-gray-500 dark:text-gray-400`}
+    class={`flex ${dateWidth} flex-shrink-0 truncate text-sm text-gray-500 dark:text-gray-400 md:text-base`}
   >
-    <time>{formatDate(post.data.pubDate, dateFormat)}</time>
+    <time>{formatDate(post.data.pubDate, dateFormat, lang)}</time>
   </p>
   <p class="line-clamp-2 text-lg hover:underline">{post.data.title}</p>
 </a>

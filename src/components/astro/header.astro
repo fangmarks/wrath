@@ -9,12 +9,8 @@ const lang = getLangFromUrl(Astro.url)
 const config = lang === "de" ? de : en
 ---
 
-<header class="flex h-24 w-full items-center justify-between">
-  <a href="/" aria-label={`${config.siteName}`}>
-    <div class="text-2xl font-semibold">{config.siteName}</div>
-  </a>
-
-  <div class="flex items-center gap-6">
+<header class="flex h-24 w-auto flex-row items-center justify-end pr-5">
+  <div class="flex items-center gap-6 dark:text-amber-400 text-blue-700">
     {
       config.rss && (
         <a
@@ -27,20 +23,6 @@ const config = lang === "de" ? de : en
         </a>
       )
     }
-    {
-      config.social.map((social) => (
-        <a
-          href={social.link}
-          target="_blank"
-          class="hidden md:block"
-          aria-label={social.label}
-          title={social.label}
-        >
-          <social.icon />
-        </a>
-      ))
-    }
-
     <LanguageToggle client:load />
     <ThemeToggle client:load />
   </div>
