@@ -1,0 +1,11 @@
+steps:
+  - name: Build and Push Image
+    when:
+    - event: push
+      branch: main
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      repo: registry.lio.systems/wrath
+      registry: registry.lio.systems
+      dockerfile: Dockerfile
+      tag: dev
