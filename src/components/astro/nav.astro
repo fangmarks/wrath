@@ -8,7 +8,7 @@ const t = useTranslations(lang)
 const { home, archive, custom, links, about } =
   lang === "de" ? de.navigation : en.navigation
 
-  const linkClasses = `nav-links inline-block hover:underline hover:underline-offset-4 text-blue-700 dark:text-amber-400`
+const linkClasses = `nav-links inline-block hover:underline hover:underline-offset-4 text-blue-700 dark:text-amber-400`
 ---
 
 <nav>
@@ -40,7 +40,7 @@ const { home, archive, custom, links, about } =
       )
     }
   </div>
-  <div class="flex flex-row flex-wrap gap-4 text-lg pt-1">
+  <div class="flex flex-row flex-wrap gap-4 pt-1 text-lg">
     {
       custom?.map((tab) => (
         <a
@@ -56,7 +56,7 @@ const { home, archive, custom, links, about } =
       ))
     }
   </div>
-  
+
   {
     links && (
       <a

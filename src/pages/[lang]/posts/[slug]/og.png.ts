@@ -25,7 +25,7 @@ export async function GET({ props }: Props) {
     width: 1200,
     height: 600,
     padding: 10,
-    color: '#FFB900'
+    color: "#FFB900",
   }
   const { post } = props
   const path = join(process.cwd(), "public", "fonts", "JetBrainsMono-Bold.ttf")
@@ -35,7 +35,7 @@ export async function GET({ props }: Props) {
   // Astro doesn't support tsx endpoints so usign React-element objects
   const html = {
     type: "div",
-    key: 'extra-margin',
+    key: "extra-margin",
     props: {
       style: {
         display: "flex",
@@ -97,7 +97,7 @@ export async function GET({ props }: Props) {
         },
       ],
     },
-  } as unknown as ReactElement;
+  } as unknown as ReactElement
 
   return new ImageResponse(html, {
     width: options.width,
@@ -112,4 +112,3 @@ export async function GET({ props }: Props) {
     ],
   })
 }
-

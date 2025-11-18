@@ -19,14 +19,14 @@ const urls = {
 
 const isPost = Astro.url.pathname.includes("posts")
 
-const ogImageURL = new URL(isPost ? urls.postURL : urls.general, Astro.site).href
+const ogImageURL = new URL(isPost ? urls.postURL : urls.general, Astro.site)
+  .href
 const permalink = new URL(Astro.url.pathname, Astro.site).href
 const config = lang === "de" ? de : en
 const title = isPost
-          ? `${post.title} - ${config.meta.title}`
-          : `${config.meta.description} - ${config.meta.title}`
+  ? `${post.title} - ${config.meta.title}`
+  : `${config.meta.description} - ${config.meta.title}`
 const description = isPost ? post.description : config.meta.description
-
 ---
 
 <!doctype html>
@@ -39,35 +39,20 @@ const description = isPost ? post.description : config.meta.description
       {title}
     </title>
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content={description}
-    />
+    <meta name="description" content={description} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={permalink} />
-    <meta
-      property="og:title"
-      content={title}
-    />
-    <meta
-      property="og:description"
-      content={description}
-    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={permalink} />
-    <meta
-      property="twitter:title"
-      content={title}
-    />
-    <meta
-      property="twitter:description"
-      content={description}
-    />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageURL} />
 
     <script is:inline>

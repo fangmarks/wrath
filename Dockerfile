@@ -21,4 +21,5 @@ FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=build /usr/src/app/dist .
 
+EXPOSE 4321
 ENTRYPOINT [ "bun", "run", "./server/entry.mjs" ]

@@ -19,7 +19,7 @@ import node from "@astrojs/node";
 export default defineConfig({
   output: "static",
   prefetch: true,
-  site: import.meta.env.PROD ? "https://lio.cat" : 'http://localhost:4321',
+  site: import.meta.env.PROD === 'true' ? "https://lio.cat" : 'http://localhost:4321',
 
   markdown: {
     remarkRehype: {},

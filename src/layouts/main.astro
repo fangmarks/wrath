@@ -5,32 +5,32 @@ import Navigation from "~/components/astro/nav.astro"
 import { de, en } from "~/config"
 import { getLangFromUrl } from "~/i18n/utils"
 import BaseLayout from "~/layouts/base.astro"
-import '@fontsource-variable/jetbrains-mono';
+import "@fontsource-variable/jetbrains-mono"
 
 const { title, description, post } = Astro.props
 const lang = getLangFromUrl(Astro.url)
 const config = lang === "de" ? de : en
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  post={post}
->
-  <div class="flex w-full max-w-4xl flex-col pt-5 p-2">
-    <div class=" flex w-full items-center justify-end pb-4">
+<BaseLayout title={title} description={description} post={post}>
+  <div class="flex w-full max-w-4xl flex-col p-2 pt-5">
+    <div class="flex w-full items-center justify-end pb-4">
       <a href="/" aria-label={`${config.siteName}`} class="mr-auto">
         <!-- <div class="text-4xl font-semibold">{config.siteName}</div> -->
-         <img src="/images/general/logo-dark.png" alt="" class="dark:hidden">
-         <img src="/images/general/logo-light.png" alt="" class="hidden dark:block">
+        <img src="/images/general/logo-dark.png" alt="" class="dark:hidden" />
+        <img
+          src="/images/general/logo-light.png"
+          alt=""
+          class="hidden dark:block"
+        />
       </a>
       <Header />
     </div>
     <div class="flex w-full flex-col">
-      <aside class="flex flex-col ">
+      <aside class="flex flex-col">
         <Navigation />
       </aside>
-      <main class="max-auto mb-10 w-full max-w-3xl flex-1  pt-5">
+      <main class="max-auto mb-10 w-full max-w-3xl flex-1 pt-5">
         <slot />
       </main>
     </div>

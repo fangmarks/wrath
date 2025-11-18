@@ -8,17 +8,17 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
 const allPosts = await getPostsByLocale(lang)
-const posts = allPosts.slice(0, common.latestPosts).filter(p => p.data.published)
+const posts = allPosts
+  .slice(0, common.latestPosts)
+  .filter((p) => p.data.published)
 ---
 
-<div class="my-8 text-xl font-medium md:my-8">{(posts.length > 0) && t("blog.latest")}</div>
-{ (posts.length > 0) && 
-  posts.map((post: any) => (
-    <PostList
-      post={post}
-      lang={lang}
-      dateFormat="locale"
-      dateWidth="w-32"
-    />
-  ))
+<div class="my-8 text-xl font-medium md:my-8">
+  {posts.length > 0 && t("blog.latest")}
+</div>
+{
+  posts.length > 0 &&
+    posts.map((post: any) => (
+      <PostList post={post} lang={lang} dateFormat="locale" dateWidth="w-32" />
+    ))
 }

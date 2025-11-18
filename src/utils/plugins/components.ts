@@ -69,4 +69,3 @@ export function remarkCustomLinks(options: CustomLinkOptions = {}): Plugin {
     }
   }
 }
-

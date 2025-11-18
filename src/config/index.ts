@@ -7,8 +7,7 @@ export const common = {
     url: "https://lio.cat",
   },
   googleAnalyticsId: "",
-  social: [
-  ],
+  social: [],
   rss: true,
   navigation: {
     home: true,
@@ -95,7 +94,6 @@ export const en = {
   },
   navigation: {
     ...common.navigation,
-    
   },
   pageMeta: {
     archive: {
