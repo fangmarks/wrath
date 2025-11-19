@@ -1,7 +1,7 @@
 export const prerender = true
-import { getCollection, type CollectionEntry } from "astro:content"
+import { type CollectionEntry } from "astro:content"
 import fs from "fs"
-import { join, resolve } from "node:path"
+import { join } from "node:path"
 import { ImageResponse } from "@vercel/og"
 import { getPostsByLocale } from "~/utils"
 import type { ReactElement } from "react"

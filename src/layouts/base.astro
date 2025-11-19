@@ -1,7 +1,6 @@
 ---
-import { NoiseBackground } from "~/components/react/noise-background"
+// import { NoiseBackground } from "~/components/react/noise-background"
 import { getLangFromUrl } from "~/i18n/utils"
-import { GoogleAnalytics } from "astro-google-analytics"
 import { en, de } from "~/config"
 import { ClientRouter } from "astro:transitions"
 
@@ -15,8 +14,6 @@ const urls = {
   postURL: `${Astro.url.pathname.replace(/\/$/, "")}/og.png`,
   general: `/images/general/ogImage.png`,
 }
-
-const isPost = post
 
 const ogImageURL = new URL(post ? urls.postURL : urls.general, Astro.site).href
 const permalink = new URL(Astro.url.pathname, Astro.site).href

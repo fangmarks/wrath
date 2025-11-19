@@ -9,18 +9,16 @@ import { defineConfig } from "astro/config"
 
 import robotsTxt from "astro-robots-txt"
 import addClasses from "rehype-class-names"
-// import remarkRehype from "remark-rehype"
-
 import og from "astro-og";
+import bun from "@hedystia/astro-bun";
 
-import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  adapter: bun(),
+	output: "server",
   prefetch: true,
   site: "https://lio.cat",
-
   markdown: {
     remarkRehype: {},
     rehypePlugins: [
@@ -45,8 +43,4 @@ export default defineConfig({
       showLineNumbers: true,
     },
   }), mdx({}), robotsTxt(), og()],
-
-  adapter: node({
-    mode: "standalone",
-  }),
 })
