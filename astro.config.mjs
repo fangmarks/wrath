@@ -17,7 +17,7 @@ import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "static",
+  output: "server",
   prefetch: true,
   site: "https://lio.cat",
 

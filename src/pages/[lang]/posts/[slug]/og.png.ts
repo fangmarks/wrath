@@ -1,3 +1,4 @@
+export const prerender = true
 import { getCollection, type CollectionEntry } from "astro:content"
 import fs from "fs"
 import { join, resolve } from "node:path"

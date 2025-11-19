@@ -1,3 +1,4 @@
+export const prerender = true
 import rss from "@astrojs/rss"
 import { de, en } from "~/config"
 import { getPostsByLocale } from "~/utils"
