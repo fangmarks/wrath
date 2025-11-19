@@ -18,8 +18,7 @@ const urls = {
 
 const isPost = post
 
-const ogImageURL = new URL(post ? urls.postURL : urls.general, Astro.site)
-  .href
+const ogImageURL = new URL(post ? urls.postURL : urls.general, Astro.site).href
 const permalink = new URL(Astro.url.pathname, Astro.site).href
 const config = lang === "de" ? de : en
 const title = post
