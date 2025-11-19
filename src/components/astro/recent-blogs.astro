@@ -10,7 +10,6 @@ const t = useTranslations(lang)
 const allPosts = await getPostsByLocale(lang)
 const posts = allPosts
   .slice(0, common.latestPosts)
-  .filter((p) => p.data.published)
 ---
 
 <div class="my-8 text-xl font-medium md:my-8">

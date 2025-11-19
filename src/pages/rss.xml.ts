@@ -10,9 +10,7 @@ export async function GET() {
     title: config.meta.title,
     description: config.meta.description,
     site:
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:4321"
-        : config.meta.url,
+    config.meta.url,
     items: posts.map((post: any) => ({
       title: post.data.title,
       description: post.data.description,
