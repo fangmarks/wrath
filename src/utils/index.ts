@@ -35,11 +35,10 @@ export const getPostsByLocale = async (locale: string) => {
       : await getCollection("dePosts")
   // Add the locale to the data of each post
 
-  
   posts.forEach((post: any) => {
     post.data.lang = locale
   })
-  const filtered = posts.filter(p => p.data.published)
+  const filtered = posts.filter((p) => p.data.published)
   return filtered.sort(
     (a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   )

@@ -8,8 +8,7 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
 const allPosts = await getPostsByLocale(lang)
-const posts = allPosts
-  .slice(0, common.latestPosts)
+const posts = allPosts.slice(0, common.latestPosts)
 ---
 
 <div class="my-8 text-xl font-medium md:my-8">

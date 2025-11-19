@@ -9,8 +9,7 @@ export async function GET() {
   return rss({
     title: config.meta.title,
     description: config.meta.description,
-    site:
-    config.meta.url,
+    site: config.meta.url,
     items: posts.map((post: any) => ({
       title: post.data.title,
       description: post.data.description,
